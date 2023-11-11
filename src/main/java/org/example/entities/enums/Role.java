@@ -1,8 +1,8 @@
 package org.example.entities.enums;
 
 public enum Role {
-    STUDENT("Student"),
-    HEADTEACHER("Headteacher");
+    STUDENT("student"),
+    HEADTEACHER("teacher");
     private String role;
 
     Role(String role){
