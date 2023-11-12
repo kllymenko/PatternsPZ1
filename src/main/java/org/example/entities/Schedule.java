@@ -27,12 +27,14 @@ public class Schedule {
             this.userId = userId;
         }
 
-        public void setGrade(int grade) {
+        public Builder setGrade(int grade) {
             this.grade = grade;
+            return this;
         }
 
-        public void setPresent(boolean present) {
+        public Builder setPresent(boolean present) {
             isPresent = present;
+            return this;
         }
 
         public Schedule build() {

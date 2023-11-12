@@ -51,8 +51,9 @@ public class User {
             this.sex = sex;
         }
 
-        public void setUserId(int userId) {
+        public Builder setUserId(int userId) {
             this.userId = userId;
+            return this;
         }
 
         public Builder setRole(String role) {

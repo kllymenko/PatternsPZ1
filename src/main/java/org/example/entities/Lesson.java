@@ -20,7 +20,7 @@ public class Lesson {
     private LocalDate date;
     private Time timeStart;
     private Time timeEnd;
-    private int cubName;
+    private int cabName;
     private Map<Role, Schedule> usersInLesson;
 
     public Lesson(Builder builder) {
@@ -29,7 +29,7 @@ public class Lesson {
         this.date = builder.date;
         this.timeStart = builder.timeStart;
         this.timeEnd = builder.timeEnd;
-        this.cubName = builder.cubName;
+        this.cabName = builder.cabName;
         this.usersInLesson = builder.usersInLesson;
     }
 
@@ -39,38 +39,45 @@ public class Lesson {
         private LocalDate date;
         private Time timeStart;
         private Time timeEnd;
-        private int cubName;
+        private int cabName;
         private Map<Role, Schedule> usersInLesson = new EnumMap<>(Role.class);;
 
         public Builder() {
         }
 
-        public void setLessonId(int lessonId) {
+        public Builder setLessonId(int lessonId) {
             this.lessonId = lessonId;
+            return this;
         }
 
-        public void setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
+            return this;
         }
 
-        public void setDate(LocalDate date) {
+        public Builder setDate(LocalDate date) {
             this.date = date;
+            return this;
         }
 
-        public void setTimeStart(Time timeStart) {
+        public Builder setTimeStart(Time timeStart) {
             this.timeStart = timeStart;
+            return this;
         }
 
-        public void setTimeEnd(Time timeEnd) {
+        public Builder setTimeEnd(Time timeEnd) {
             this.timeEnd = timeEnd;
+            return this;
         }
 
-        public void setCubName(int cubName) {
-            this.cubName = cubName;
+        public Builder setCabName(int cabName) {
+            this.cabName = cabName;
+            return this;
         }
 
-        public void setUsersInLesson(Role role, Schedule schedule) {
+        public Builder setUsersInLesson(Role role, Schedule schedule) {
             this.usersInLesson.put(role, schedule);
+            return this;
         }
 
         public Lesson build(){

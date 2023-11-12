@@ -2,17 +2,25 @@ package org.example.DAO.EntityDAOImpl;
 
 import org.example.DAO.EntityDAO.LessonDAO;
 import org.example.entities.Lesson;
+import org.example.entities.Schedule;
+import org.example.entities.enums.Role;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LessonDAOImpl implements LessonDAO {
-    private static final String ADD_LESSON = "INSERT INTO school.lesson (name, date, time_start, time_end) VALUES (?, ?, ?, ?)";
+    private static final String ADD_LESSON = "INSERT INTO school.lesson (name, date, time_start, time_end, cab_num) VALUES (?, ?, ?, ?, ?)";
+    private static final String ADD_SCHEDULE = "INSERT INTO school.schedule (user_id, lesson_id, grade, is_present) VALUES (?, ?, ?, ?)";
     private static final String GET_LESSON_BY_ID = "SELECT * from school.lesson WHERE lesson_id=?";
     private static final String DELETE_LESSON_BY_ID = "DELETE FROM school.lesson WHERE lesson_id=?";
     private static final String GET_ALL_LESSONS = "SELECT * FROM school.lesson";
     private static final String UPDATE_NAME = "UPDATE school.lesson SET name=? WHERE lesson_id=?";
+    private static final String GET_SCHEDULE_BY_USER_ID = "SELECT * from school.schedule WHERE user_id=?";
+    private static final String DELETE_SCHEDULE_BY_USER_ID = "DELETE FROM school.schedule WHERE user_id = ?";
+    private static final String GET_ALL_SCHEDULE = "SELECT * FROM school.schedule";
+    private static final String UPDATE_GRADE_BY_USER_AND_LESSON = "UPDATE school.schedule SET grade=? WHERE user_id=? AND lesson_id=?";
     private final Connection con;
 
     public LessonDAOImpl(Connection connection) {
@@ -21,23 +29,33 @@ public class LessonDAOImpl implements LessonDAO {
 
     @Override
     public int insert(Lesson entity) {
-        try (PreparedStatement ps = con.prepareStatement(ADD_LESSON, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement psLesson = con.prepareStatement(ADD_LESSON, Statement.RETURN_GENERATED_KEYS)) {
             int k = 0;
-            ps.setString(++k, entity.getName());
-            ps.setDate(++k, Date.valueOf(entity.getDate()));
-            ps.setTime(++k, entity.getTimeStart());
-            ps.setTime(++k, entity.getTimeEnd());
-            ps.executeUpdate();
-            try (ResultSet keys = ps.getGeneratedKeys()) {
+            psLesson.setString(++k, entity.getName());
+            psLesson.setDate(++k, java.sql.Date.valueOf(entity.getDate()));
+            psLesson.setTime(++k, entity.getTimeStart());
+            psLesson.setTime(++k, entity.getTimeEnd());
+            psLesson.setInt(++k, entity.getCabName());
+            psLesson.executeUpdate();
+            try (ResultSet keys = psLesson.getGeneratedKeys()) {
                 if (keys.next()) {
                     entity.setLessonId(keys.getInt(1));
                 }
+                for (Map.Entry<Role, Schedule> entry : entity.getUsersInLesson().entrySet()) {
+                    try (PreparedStatement psSchedule = con.prepareStatement(ADD_SCHEDULE)) {
+                        k = 0;
+                        psSchedule.setInt(++k, entry.getValue().getUserId());
+                        psSchedule.setInt(++k, entity.getLessonId());
+                        psSchedule.setInt(++k, entry.getValue().getGrade());
+                        psSchedule.setBoolean(++k, entry.getValue().isPresent());
+                        psSchedule.executeUpdate();
+                    }
+                }
             }
-
-            return entity.getLessonId();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
+        return entity.getLessonId();
     }
 
     @Override
@@ -47,64 +65,27 @@ public class LessonDAOImpl implements LessonDAO {
 
     @Override
     public boolean delete(int id) {
-        try (PreparedStatement ps = con.prepareStatement(DELETE_LESSON_BY_ID)) {
-            int k = 0;
-            ps.setInt(++k, id);
-            int rowsDeleted = ps.executeUpdate();
-            return rowsDeleted > 0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return false;
     }
 
     @Override
     public List<Lesson> findAll() {
-        List<Lesson> lessons = new ArrayList<>();
-        try (PreparedStatement ps = con.prepareStatement(GET_ALL_LESSONS)) {
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    lessons.add(mapLessons(rs));
-                }
-                return lessons;
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return null;
     }
 
     @Override
     public Lesson findById(int id) {
-        Lesson lesson = new Lesson();
-        try (PreparedStatement ps = con.prepareStatement(GET_LESSON_BY_ID)) {
-            int k = 0;
-            ps.setLong(++k, id);
-            try (ResultSet resultSet = ps.executeQuery()) {
-                while (resultSet.next()) {
-                    lesson = mapLessons(resultSet);
-                }
-                return lesson;
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return null;
     }
 
     @Override
     public boolean updateName(Lesson entity, String newName) {
-        try (PreparedStatement ps = con.prepareStatement(UPDATE_NAME)) {
-            int k = 0;
-            ps.setString(++k, newName);
-            ps.setInt(++k, entity.getLessonId());
-            int rowsUpdated = ps.executeUpdate();
-            return rowsUpdated > 0;
+        return false;
+    }
 
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public List<Lesson> getLessonsByUserId(int userId) {
+        return null;
     }
 
     private Lesson mapLessons(ResultSet rs) throws SQLException {

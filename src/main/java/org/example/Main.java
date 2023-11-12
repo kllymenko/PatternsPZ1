@@ -7,9 +7,15 @@ import org.example.DAO.EntityDAOImpl.UserDAOImpl;
 import org.example.DAO.Factory.DAOFactory;
 import org.example.DAO.Factory.DAOFactoryImpl;
 import org.example.entities.Homework;
+import org.example.entities.Lesson;
+import org.example.entities.Schedule;
 import org.example.entities.User;
+import org.example.entities.enums.Role;
 import org.example.entities.enums.Sex;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Main {
@@ -46,5 +52,17 @@ public class Main {
         int userIdToDelete = userToUpdate.getUserId();
         boolean userDeleted = userDAO.delete(userIdToDelete);
         System.out.println("User deleted: " + userDeleted);
+
+
+        Lesson lesson = new Lesson.Builder()
+                .setName("Test Lesson")
+                .setDate(LocalDate.now())
+                .setTimeStart(Time.valueOf(LocalTime.now()))
+                .setTimeEnd(Time.valueOf(LocalTime.now().plusHours(1)))
+                .setCabName(101)
+                .setUsersInLesson(Role.STUDENT, new Schedule.Builder(userDAO.findAll().get(1).getUserId()).setGrade(5).setPresent(true).build())
+                .setUsersInLesson(Role.STUDENT, new Schedule.Builder(userDAO.findAll().get(2).getUserId()).setGrade(5).setPresent(true).build())
+                .build();
+        System.out.println(lessonDAO.insert(lesson));
     }
 }
