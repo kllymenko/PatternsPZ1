@@ -32,20 +32,24 @@ public class Homework {
         public Builder(){
         }
 
-        public void setHomeworkId(int homeworkId) {
+        public Builder setHomeworkId(int homeworkId) {
             this.homeworkId = homeworkId;
+            return this;
         }
 
-        public void setLessonId(int lessonId) {
+        public Builder setLessonId(int lessonId) {
             this.lessonId = lessonId;
+            return this;
         }
 
-        public void setDescription(String description) {
+        public Builder setDescription(String description) {
             this.description = description;
+            return this;
         }
 
-        public void setDueDateTime(Timestamp dueDateTime) {
+        public Builder setDueDateTime(Timestamp dueDateTime) {
             this.dueDateTime = dueDateTime;
+            return this;
         }
 
         public Homework build(){

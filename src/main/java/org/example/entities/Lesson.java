@@ -3,13 +3,10 @@ package org.example.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.entities.enums.Role;
 
 import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.EnumMap;
-import java.util.Map;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +18,7 @@ public class Lesson {
     private Time timeStart;
     private Time timeEnd;
     private int cabName;
-    private Map<Role, Schedule> usersInLesson;
+    private List<Schedule> usersInLesson;
 
     public Lesson(Builder builder) {
         this.lessonId = builder.lessonId;
@@ -40,7 +37,7 @@ public class Lesson {
         private Time timeStart;
         private Time timeEnd;
         private int cabName;
-        private Map<Role, Schedule> usersInLesson = new EnumMap<>(Role.class);;
+        private List<Schedule> usersInLesson = new ArrayList<>();
 
         public Builder() {
         }
@@ -75,13 +72,17 @@ public class Lesson {
             return this;
         }
 
-        public Builder setUsersInLesson(Role role, Schedule schedule) {
-            this.usersInLesson.put(role, schedule);
+        public Builder setUsersInLesson(Schedule schedule) {
+            this.usersInLesson.add(schedule);
             return this;
         }
 
         public Lesson build(){
             return new Lesson(this);
+        }
+
+        public long getLessonId() {
+            return lessonId;
         }
     }
 }

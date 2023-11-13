@@ -33,7 +33,7 @@ public class HomeworkDAOImpl implements HomeworkDAO {
 
                 }
             }
-            return entity.getLessonId();
+            return entity.getHomeworkId();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -77,8 +77,7 @@ public class HomeworkDAOImpl implements HomeworkDAO {
     public Homework findById(int id) {
         Homework homework = new Homework();
         try (PreparedStatement ps = con.prepareStatement(GET_HOMEWORK_BY_ID)) {
-            int k = 0;
-            ps.setLong(++k, id);
+            ps.setLong(1, id);
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
                     homework = mapHomeworks(resultSet);
