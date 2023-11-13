@@ -88,6 +88,8 @@ public class Main {
         List<Lesson> lessonsByUserId = lessonDAO.getLessonsByUserId(userDAO.findAll().get(1).getUserId());
         System.out.println("Lessons for user ID " + userDAO.findAll().get(1).getUserId() + ": " + lessonsByUserId);
 
+        System.out.println("\nTesting HomeworkDAOImpl methods:");
+
         // Insert homework
         System.out.println(lessonDAO.findAll());
         Homework homework = new Homework.Builder()
@@ -125,7 +127,6 @@ public class Main {
         // Delete lesson
         boolean lessonDeleted = lessonDAO.delete(lessonId);
         System.out.println("Lesson deleted: " + lessonDeleted);
-        System.out.println("\nTesting HomeworkDAOImpl methods:");
 
     }
 }
