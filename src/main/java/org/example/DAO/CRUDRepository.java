@@ -3,9 +3,9 @@ package org.example.DAO;
 import java.util.List;
 
 public interface CRUDRepository<T> {
-    int insert(T entity);
+    String insert(T entity);
     boolean update(T entity);
-    boolean delete(int id);
+    boolean delete(String id);
     List<T> findAll();
-    T findById(int id);
+    T findById(String id);
 }

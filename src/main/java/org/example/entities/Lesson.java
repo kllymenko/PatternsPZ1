@@ -4,45 +4,48 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Lesson {
-    private int lessonId;
+    private String lessonId;
     private String name;
     private LocalDate date;
-    private Time timeStart;
-    private Time timeEnd;
-    private int cabName;
-    private List<Schedule> usersInLesson;
+    private LocalTime timeStart;
+    private LocalTime timeEnd;
+    private int cabNum;
+    private String topic;
+    private Homework homework;
 
-    public Lesson(Builder builder) {
+    private Lesson(Builder builder) {
         this.lessonId = builder.lessonId;
         this.name = builder.name;
         this.date = builder.date;
         this.timeStart = builder.timeStart;
         this.timeEnd = builder.timeEnd;
-        this.cabName = builder.cabName;
-        this.usersInLesson = builder.usersInLesson;
+        this.cabNum = builder.cabNum;
+        this.topic = builder.topic;
+        this.homework = builder.homework;
     }
 
     public static class Builder {
-        private int lessonId;
+        private String lessonId;
         private String name;
         private LocalDate date;
-        private Time timeStart;
-        private Time timeEnd;
-        private int cabName;
-        private List<Schedule> usersInLesson = new ArrayList<>();
+        private LocalTime timeStart;
+        private LocalTime timeEnd;
+        private int cabNum;
+        private String topic;
+        private Homework homework;
 
         public Builder() {
         }
 
-        public Builder setLessonId(int lessonId) {
+        public Builder setLessonId(String lessonId) {
             this.lessonId = lessonId;
             return this;
         }
@@ -57,32 +60,37 @@ public class Lesson {
             return this;
         }
 
-        public Builder setTimeStart(Time timeStart) {
+        public Builder setTimeStart(LocalTime timeStart) {
             this.timeStart = timeStart;
             return this;
         }
 
-        public Builder setTimeEnd(Time timeEnd) {
+        public Builder setTimeEnd(LocalTime timeEnd) {
             this.timeEnd = timeEnd;
             return this;
         }
 
-        public Builder setCabName(int cabName) {
-            this.cabName = cabName;
+        public Builder setCabNum(int cabNum) {
+            this.cabNum = cabNum;
             return this;
         }
 
-        public Builder setUsersInLesson(Schedule schedule) {
-            this.usersInLesson.add(schedule);
+        public Builder setTopic(String topic) {
+            this.topic = topic;
             return this;
         }
 
-        public Lesson build(){
+        public Builder setHomework(Homework homework) {
+            this.homework = homework;
+            return this;
+        }
+
+        public Lesson build() {
+            if (name == null || topic == null) {
+                throw new IllegalStateException("Не всі обов'язкові поля були встановлені");
+            }
+
             return new Lesson(this);
-        }
-
-        public long getLessonId() {
-            return lessonId;
         }
     }
 }

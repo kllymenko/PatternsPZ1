@@ -5,40 +5,33 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Homework {
-    private int homeworkId;
-    private int lessonId;
+    private String homeworkId;
     private String description;
-    private Timestamp dueDateTime;
+    private LocalDateTime dueDateTime;
 
-    public Homework(Builder builder) {
+    private Homework(Builder builder) {
         this.homeworkId = builder.homeworkId;
-        this.lessonId = builder.lessonId;
         this.description = builder.description;
         this.dueDateTime = builder.dueDateTime;
     }
 
     public static class Builder {
-        private int homeworkId;
-        private int lessonId;
+        private String homeworkId;
         private String description;
-        private Timestamp dueDateTime;
+        private LocalDateTime dueDateTime;
 
-        public Builder(){
+        public Builder() {
+            // Задаємо значення за замовчуванням або за необхідності
         }
 
-        public Builder setHomeworkId(int homeworkId) {
+        public Builder setHomeworkId(String homeworkId) {
             this.homeworkId = homeworkId;
-            return this;
-        }
-
-        public Builder setLessonId(int lessonId) {
-            this.lessonId = lessonId;
             return this;
         }
 
@@ -47,14 +40,18 @@ public class Homework {
             return this;
         }
 
-        public Builder setDueDateTime(Timestamp dueDateTime) {
+        public Builder setDueDateTime(LocalDateTime dueDateTime) {
             this.dueDateTime = dueDateTime;
             return this;
         }
 
-        public Homework build(){
+        public Homework build() {
+            if (description == null || dueDateTime == null) {
+                throw new IllegalStateException("Не всі обов'язкові поля були встановлені");
+            }
+
+            // Створюємо та повертаємо об'єкт Homework
             return new Homework(this);
         }
     }
-
 }

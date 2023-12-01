@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface LessonDAO extends CRUDRepository<Lesson> {
     public boolean updateName(Lesson entity, String newName);
-
-    List<Lesson> getLessonsByUserId(int userId);
 }

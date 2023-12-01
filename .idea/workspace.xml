@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df3c8362-4eca-4fde-8278-c3429c59fdf7" name="Changes" comment="commit 5" />
+    <list default="true" id="df3c8362-4eca-4fde-8278-c3429c59fdf7" name="Changes" comment="commit 6">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mongo/MongoHomeworkDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mongo/MongoLessonDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mongo/MongoUserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/CRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/CRUDRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAO/LessonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAO/LessonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/HomeworkDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mysql/MySQLHomeworkDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/LessonDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mysql/MySQLLessonDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mysql/MySQLUserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/Factory/DAOFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/Factory/DAOFactoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Homework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Homework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Schedule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/enums/Role.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,16 +54,23 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/alexk/IdeaProjects/PatternsPZ1/src/main/java/org/example&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alexk/IdeaProjects/PatternsPZ1/src/main/java/org/example/entities/entitiesM&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\alexk\IdeaProjects\PatternsPZ1\src\main\java\org\example\entities\entitiesM" />
       <recent name="C:\Users\alexk\IdeaProjects\PatternsPZ1\src\main\java\org\example" />
       <recent name="C:\Users\alexk\IdeaProjects\PatternsPZ1" />
     </key>
@@ -89,7 +117,22 @@
       <workItem from="1699734013930" duration="2000" />
       <workItem from="1699740676649" duration="3024000" />
       <workItem from="1699791680650" duration="3410000" />
-      <workItem from="1699898565189" duration="6091000" />
+      <workItem from="1699898565189" duration="6329000" />
+      <workItem from="1700569570787" duration="23000" />
+      <workItem from="1701115276373" duration="1058000" />
+      <workItem from="1701184905641" duration="758000" />
+      <workItem from="1701190731845" duration="558000" />
+      <workItem from="1701205463963" duration="3002000" />
+      <workItem from="1701257417483" duration="4273000" />
+      <workItem from="1701287823483" duration="8913000" />
+      <workItem from="1701336398978" duration="1462000" />
+      <workItem from="1701352668552" duration="3119000" />
+      <workItem from="1701360440143" duration="4190000" />
+      <workItem from="1701367713483" duration="3092000" />
+      <workItem from="1701375120326" duration="6678000" />
+      <workItem from="1701383504478" duration="2997000" />
+      <workItem from="1701424593730" duration="2146000" />
+      <workItem from="1701429565188" duration="7259000" />
     </task>
     <task id="LOCAL-00001" summary="commit 2">
       <option name="closed" value="true" />
@@ -123,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699903730042</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit 6">
+      <option name="closed" value="true" />
+      <created>1699904986365</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699904986365</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,21 +185,7 @@
     <MESSAGE value="commit 3" />
     <MESSAGE value="commit 4" />
     <MESSAGE value="commit 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 5" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/HomeworkDAOImpl.java</url>
-          <line>22</line>
-          <properties class="org.example.DAO.EntityDAOImpl.HomeworkDAOImpl" method="insert">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="commit 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 6" />
   </component>
 </project>
