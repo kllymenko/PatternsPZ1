@@ -303,6 +303,60 @@ public class Main {
         // Test delete for Homework
         boolean isHomeworkDeletedMongo = homeworkDAOMongo.delete(homeworkIdMongo);
         System.out.println("Is Homework Deleted: " + isHomeworkDeletedMongo);
+
+        for (int i = 0; i < 100; i++) {
+            User userInsert = new User.Builder()
+                    .setUserId(String.valueOf(i))
+                    .setName("John")
+                    .setSurname("Doe")
+                    .setPhone("123456789")
+                    .setEmail("john.doe@example.com")
+                    .setPassword("password")
+                    .setSex(Sex.MALE)
+                    .setRole(Role.STUDENT)
+                    .build();
+            for (int j = 1; j <= 5; j++) {
+                Lesson lessonInsert = new Lesson.Builder()
+                        .setLessonId(String.valueOf(i))
+                        .setName("Lesson " + j)
+                        .setTopic("Topic " + j)
+                        .setDate(java.time.LocalDate.now())
+                        .setTimeStart(java.time.LocalTime.now())
+                        .setTimeEnd(java.time.LocalTime.now().plusHours(1))
+                        .setCabNum(j)
+                        .setHomework(new Homework.Builder()
+                                .setDescription("Homework for Lesson " + j)
+                                .setDueDateTime(java.time.LocalDateTime.now().plusDays(j))
+                                .build())
+                        .build();
+
+                userInsert.setLessonsWithGrade(lessonInsert, i * 10);
+            }
+            userDAOMongo.insert(userInsert);
+        }
+
+        Migration migration = new Migration();
+
+        System.out.println("Result of migration user from Mongo to Mysql: " + migration.userFromMongoToMysql());
+        System.out.println("Result of migration user from Mysql to Mongo: " + migration.userFromMySQLToMongo());
+        userList = userDAOMongo.findAll();
+        for (User u : userList) {
+            userDAOMongo.delete(u.getUserId());
+        }
+
+        System.out.println("Result of migration lesson from Mongo to Mysql: " + migration.lessonFromMongoToMysql());
+        System.out.println("Result of migration lesson from Mysql to Mongo: " + migration.lessonFromMySQLToMongo());
+        lessonList = lessonDAOMongo.findAll();
+        for (Lesson l : lessonList) {
+            lessonDAOMongo.delete(l.getLessonId());
+        }
+
+        System.out.println("Result of migration homework from Mysql to Mongo: " + migration.homeworkFromMySQLToMongo());
+        System.out.println("Result of migration homework from Mongo to Mysql: " + migration.homeworkFromMongoToMysql());
+        homeworkList = homeworkDAO.findAll();
+        for (Homework h : homeworkList) {
+            homeworkDAO.delete(h.getHomeworkId());
+        }
     }
 
     public static void writeUser(User user) {

@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df3c8362-4eca-4fde-8278-c3429c59fdf7" name="Changes" comment="commit 6">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mongo/MongoHomeworkDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mongo/MongoLessonDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mongo/MongoUserDAOImpl.java" afterDir="false" />
+    <list default="true" id="df3c8362-4eca-4fde-8278-c3429c59fdf7" name="Changes" comment="NOSQL 3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Migration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/CRUDRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/CRUDRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/ConnectionProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAO/LessonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAO/LessonDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/HomeworkDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mysql/MySQLHomeworkDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/LessonDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mysql/MySQLLessonDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/EntityDAOImpl/mysql/MySQLUserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/Factory/DAOFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/Factory/DAOFactoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Homework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Homework.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Schedule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/enums/Role.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +115,9 @@
       <workItem from="1701375120326" duration="6678000" />
       <workItem from="1701383504478" duration="2997000" />
       <workItem from="1701424593730" duration="2146000" />
-      <workItem from="1701429565188" duration="7259000" />
+      <workItem from="1701429565188" duration="7397000" />
+      <workItem from="1701634439972" duration="2978000" />
+      <workItem from="1701717318600" duration="2626000" />
     </task>
     <task id="LOCAL-00001" summary="commit 2">
       <option name="closed" value="true" />
@@ -174,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699904986365</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="NOSQL 3">
+      <option name="closed" value="true" />
+      <created>1701439089239</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701439089239</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +179,7 @@
     <MESSAGE value="commit 4" />
     <MESSAGE value="commit 5" />
     <MESSAGE value="commit 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 6" />
+    <MESSAGE value="NOSQL 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="NOSQL 3" />
   </component>
 </project>
