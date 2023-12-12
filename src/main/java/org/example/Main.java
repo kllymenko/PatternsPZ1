@@ -2,6 +2,7 @@ package org.example;
 
 
 import lombok.Data;
+import org.bson.Document;
 import org.example.DAO.EntityDAO.HomeworkDAO;
 import org.example.DAO.EntityDAO.LessonDAO;
 import org.example.DAO.EntityDAO.UserDAO;
@@ -15,6 +16,7 @@ import org.example.entities.enums.Sex;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -360,14 +362,57 @@ public class Main {
 //            homeworkDAO.delete(h.getHomeworkId());
 //        }
 
+//        DAOFactory factoryMongo = new DAOFactoryImpl("mongodb");
+//        UserDAO userDAOMongo = factoryMongo.getUserDAO();
+//        int count = 10000;
+//        testInsert(userDAOMongo, count);
+//        testSelect(userDAOMongo);
+//        List <User> userList = userDAOMongo.findAll();
+//        for (User u : userList) {
+//            userDAOMongo.delete(u.getUserId());
+//        }
+
         DAOFactory factoryMongo = new DAOFactoryImpl("mongodb");
-        UserDAO userDAOMongo = factoryMongo.getUserDAO();
-        int count = 10000;
-        testInsert(userDAOMongo, count);
-        testSelect(userDAOMongo);
-        List <User> userList = userDAOMongo.findAll();
-        for (User u : userList) {
-            userDAOMongo.delete(u.getUserId());
+        HomeworkDAO homeworkDAO = factoryMongo.getHomeworkDAO();
+        Homework homework1 = new Homework.Builder()
+                .setHomeworkId("1")
+                .setDescription("Sample Homework 1")
+                .setDueDateTime(LocalDateTime.now().plusDays(1))
+                .build();
+
+        Homework homework2 = new Homework.Builder()
+                .setHomeworkId("2")
+                .setDescription("Sample Homework 2")
+                .setDueDateTime(LocalDateTime.now().plusDays(2))
+                .build();
+
+        homeworkDAO.insert(homework1);
+        homeworkDAO.insert(homework2);
+
+        // Test aggregation methods
+        System.out.println("Aggregated by Due Date:");
+        System.out.println(homeworkDAO.aggregateByDueDate());
+
+        System.out.println("\nAggregated by Description Length:");
+        System.out.println(homeworkDAO.aggregateByDescriptionLength());
+
+        System.out.println("\nOverdue Homework:");
+        System.out.println(homeworkDAO.findOverdueHomework());
+
+        List<Homework> homeworkList = homeworkDAO.findAll();
+        for (Homework h : homeworkList) {
+            homeworkDAO.delete(h.getHomeworkId());
+        }
+
+        insertLargeSampleData(homeworkDAO, 100000);
+        measureAggregationTime(homeworkDAO);
+        System.out.println();
+        System.out.println();
+        measureOperationsTime(homeworkDAO);
+
+        homeworkList = homeworkDAO.findAll();
+        for (Homework h : homeworkList) {
+            homeworkDAO.delete(h.getHomeworkId());
         }
     }
 
@@ -400,6 +445,7 @@ public class Main {
             System.out.println("            Grade: " + grade);
         }
     }
+
     private static void testInsert(UserDAO userDAO, int count) {
         // Insert data
         Instant start = Instant.now();
@@ -445,5 +491,75 @@ public class Main {
         Instant end = Instant.now();
         System.out.println("Reading time for " + users.size() + " records: "
                 + Duration.between(start, end).toMillis() + " ms");
+    }
+
+    private static void insertLargeSampleData(HomeworkDAO homeworkDAO, int numDocuments) {
+        // Insert large sample data
+        for (int i = 1; i <= numDocuments; i++) {
+            Homework homework = new Homework.Builder()
+                    .setHomeworkId(Integer.toString(i))
+                    .setDescription("Sample Homework " + i)
+                    .setDueDateTime(LocalDateTime.of(2024, 12,12, 4,50))
+                    .build();
+
+            homeworkDAO.insert(homework);
+        }
+        Homework homework = new Homework.Builder()
+                .setHomeworkId("0")
+                .setDescription("Sample Homework 2")
+                .setDueDateTime(LocalDateTime.now())
+                .build();
+        homeworkDAO.insert(homework);
+    }
+
+    private static void measureAggregationTime(HomeworkDAO homeworkDAO) {
+        long startTime, endTime;
+
+        //Aggregate by Due Date
+        startTime = System.currentTimeMillis();
+        List<Document> result1 = homeworkDAO.aggregateByDueDate();
+        endTime = System.currentTimeMillis();
+        System.out.println("Time for Aggregate by Due Date: " + (endTime - startTime) + " milliseconds");
+        System.out.println("Result 1: " + result1);
+
+        //Aggregate by Description Length
+        startTime = System.currentTimeMillis();
+        List<Document> result2 = homeworkDAO.aggregateByDescriptionLength();
+        endTime = System.currentTimeMillis();
+        System.out.println("Time for Aggregate by Description Length: " + (endTime - startTime) + " milliseconds");
+        System.out.println("Result 2: " + result2);
+
+        //Find Overdue Homework
+        startTime = System.currentTimeMillis();
+        List<Document> result3 = homeworkDAO.findOverdueHomework();
+        endTime = System.currentTimeMillis();
+        System.out.println("Time for Find Overdue Homework: " + (endTime - startTime) + " milliseconds");
+        System.out.println("Result 3: " + result3);
+    }
+
+    private static void measureOperationsTime(HomeworkDAO homeworkDAO) {
+        // Measure the time for custom operations
+        long startTime, endTime;
+
+        //Aggregate by Due Date without Aggregation Framework
+        startTime = System.currentTimeMillis();
+        List<Document> result1WithoutAggregation = homeworkDAO.aggregateByDueDateWithoutAggregationFramework();
+        endTime = System.currentTimeMillis();
+        System.out.println("Time for Aggregate by Due Date (without Aggregation Framework): " + (endTime - startTime) + " milliseconds");
+        System.out.println("Result 1: " + result1WithoutAggregation);
+
+        //Aggregate by Description Length without Aggregation Framework
+        startTime = System.currentTimeMillis();
+        List<Document> result2WithoutAggregation = homeworkDAO.aggregateByDescriptionLengthWithoutAggregationFramework();
+        endTime = System.currentTimeMillis();
+        System.out.println("Time for Aggregate by Description Length (without Aggregation Framework): " + (endTime - startTime) + " milliseconds");
+        System.out.println("Result 2: " + result2WithoutAggregation);
+
+        //Find Overdue Homework without Aggregation Framework
+        startTime = System.currentTimeMillis();
+        List<Document> result3WithoutAggregation = homeworkDAO.findOverdueHomeworkWithoutAggregationFramework();
+        endTime = System.currentTimeMillis();
+        System.out.println("Time for Find Overdue Homework (without Aggregation Framework): " + (endTime - startTime) + " milliseconds");
+        System.out.println("Result 3: " + result3WithoutAggregation);
     }
 }

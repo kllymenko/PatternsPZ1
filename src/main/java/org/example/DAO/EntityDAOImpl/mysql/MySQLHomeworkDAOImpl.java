@@ -1,5 +1,6 @@
 package org.example.DAO.EntityDAOImpl.mysql;
 
+import org.bson.Document;
 import org.example.DAO.EntityDAO.HomeworkDAO;
 import org.example.entities.Homework;
 
@@ -112,6 +113,36 @@ public class MySQLHomeworkDAOImpl implements HomeworkDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Error updating due date and time for homework", e);
         }
+    }
+
+    @Override
+    public List<Document> aggregateByDueDate() {
+        return null;
+    }
+
+    @Override
+    public List<Document> aggregateByDescriptionLength() {
+        return null;
+    }
+
+    @Override
+    public List<Document> findOverdueHomework() {
+        return null;
+    }
+
+    @Override
+    public List<Document> findOverdueHomeworkWithoutAggregationFramework() {
+        return null;
+    }
+
+    @Override
+    public List<Document> aggregateByDescriptionLengthWithoutAggregationFramework() {
+        return null;
+    }
+
+    @Override
+    public List<Document> aggregateByDueDateWithoutAggregationFramework() {
+        return null;
     }
 
     private Homework mapHomework(ResultSet rs) throws SQLException {
