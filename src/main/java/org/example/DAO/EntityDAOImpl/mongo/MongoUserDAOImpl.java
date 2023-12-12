@@ -34,10 +34,27 @@ public class MongoUserDAOImpl implements UserDAO {
 
     @Override
     public String insert(User entity) {
-        Document userDocument = mapUserToDocument(entity);
-        collection.insertOne(userDocument);
-        return userDocument.getString("_id");
+        int maxRetries = 3;
+        int retryCount = 0;
+        while (retryCount < maxRetries) {
+            try {
+                Document userDocument = mapUserToDocument(entity);
+                collection.insertOne(userDocument);
+                return userDocument.getString("_id");
+            } catch (Exception e) {
+                retryCount++;
+                System.err.println("Error occurred while saving client. Retrying in 1 second...");
+                try {
+                    Thread.sleep(1000); // Затримка в 1 секунду перед наступною спробою запису
+                } catch (InterruptedException interruptedException) {
+                    Thread.currentThread().interrupt();
+                    System.err.println("Thread interrupted while waiting for retry.");
+                }
+            }
+        }
+        throw new RuntimeException("Max retry attempts reached. Failed to save client.");
     }
+
 
     @Override
     public boolean update(User entity) {

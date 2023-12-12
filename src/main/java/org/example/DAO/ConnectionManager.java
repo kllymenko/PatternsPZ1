@@ -1,5 +1,8 @@
 package org.example.DAO;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -10,7 +13,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
 
 public class ConnectionManager {
     private static Map<String, ConnectionManager> instances = new HashMap<>();
@@ -43,7 +45,11 @@ public class ConnectionManager {
                 e.printStackTrace();
             }
         } else if ("mongodb".equalsIgnoreCase(properties.getType())) {
-            MongoClient mongoClient = MongoClients.create(properties.getMongoUri());
+            ConnectionString connectionString = new ConnectionString(properties.getMongoUri());
+            MongoClientSettings settings = MongoClientSettings.builder()
+                    .applyConnectionString(connectionString)
+                    .build();
+            MongoClient mongoClient = MongoClients.create(settings);
             mongoDatabase = mongoClient.getDatabase(properties.getMongoDatabaseName());
         }
     }
@@ -77,3 +83,4 @@ public class ConnectionManager {
         }
     }
 }
+
